@@ -1,39 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
 
-#URL = str(input('Введите ссылку: '))
-URL = 'https://www.tut.by/'
-HEADERS = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
-           'accept': '*/*'}
+URL = 'https://people.onliner.by/'
+HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0'}
 
-#HOST = 'http://kontakt.minsk.edu.by/ru/'
+r = requests.get(URL, headers=HEADERS)
+html = BeautifulSoup(r.content, 'html.parser')
+items = html.findAll('div', class_='news-tidings__item news-tidings__item_1of3 news-tidings__item_condensed')
 
-
-def get_html(url, params=None):
-    r = requests.get(url, headers=HEADERS, params=params)
-    return r
-
-
-def get_content(html):
-    soup = BeautifulSoup(html, 'html.parser')
-    items = soup.find_all('div').get_
-    print(items)
-
-    name = []
-    for item in items:
-        name.append({
-            'Название': item.find('entry-cnt').get_text(strip=True),
-            #'Ссылка': HOST + item.find('a').get('href')
-        })
-    print(name)
-
-
-def parse():
-    html = get_html(URL)
-    if html.status_code == 200:
-        get_content(html.text)
-    else:
-        print('Error')
-
-
-parse()
+title = []
+for i in items:
+    title.append(i.find('span', class_='news-helpers_hide_mobile-small').get_text(strip=True))
+strong = '\n'.join(title)
+print(strong)
