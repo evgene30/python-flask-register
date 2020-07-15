@@ -19,8 +19,12 @@ color: black;
 .nav-link:hover,
 .nav-link:focus,
 .nav-link:active,
-.navbar-brand:hover {
+.navbar-brand b:hover,
+.navbar-brand b:focus,
+.navbar-brand b:active {
 text-decoration: underline;
+
+
 }
 
 /*top Button*/
