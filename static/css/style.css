@@ -12,8 +12,9 @@ html {
   padding-right: 40px;
 }
 
-.nav-link b, .navbar-brand b {
-color: black;
+.nav-link b,
+.navbar-brand b {
+  color: black;
 }
 
 .nav-link:hover,
@@ -22,31 +23,33 @@ color: black;
 .navbar-brand b:hover,
 .navbar-brand b:focus,
 .navbar-brand b:active {
-text-decoration: underline;
+  text-decoration: underline;
 
 
 }
 
 /*top Button*/
 #topButtom {
-display: none;
-position: fixed;
-bottom: 20px;
-right: 20px;
-width: 50px;
-height: 50px;
-border-radius: 4px;
-background-color: #ff8f19;
-line-height: 50px;
-text-align: center;
-cursor: pointer;
-opacity: 0.6;
-transition-duration: 0.5s;
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  background-color: #ff8f19;
+  line-height: 50px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0.6;
+  transition-duration: 0.5s;
 }
+
 #topButtom:hover,
 #topButtom:focus,
 #topButtom:active {
-background-color: #ff8f19;
-opacity: 100;
+  background-color: #ff8f19;
+  opacity: 100;
 }
+
 /*top Button styles end */
