@@ -24,8 +24,46 @@ html {
 .navbar-brand b:focus,
 .navbar-brand b:active {
   text-decoration: underline;
+}
 
+.link {
+  margin-top: 7px;
+  display: flex;
+  justify-content: start;
 
+}
+
+.ref {
+  margin: 0px;
+}
+
+.dr2 {
+  width: 30px;
+  height: 30px;
+  margin-top: 1px;
+  margin-left: 2px;
+  text-decoration: none;
+  opacity: 0.35;
+}
+
+.dr {
+  width: 32px;
+  height: 32px;
+  text-decoration: none;
+  opacity: 0.35;
+  margin-right: 5px;
+}
+
+.dr:hover,
+.dr:focus,
+.dr:active {
+  opacity: 100;
+}
+
+.dr2:hover,
+.dr2:focus,
+.dr2:active {
+  opacity: 100;
 }
 
 /*top Button*/
