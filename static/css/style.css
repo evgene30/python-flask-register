@@ -46,7 +46,11 @@ html {
   opacity: 0.35;
 }
 
+.ya-site-form {
+  width: 300px;
+  padding: 0px;
 
+}
 
 .dr {
   width: 32px;
