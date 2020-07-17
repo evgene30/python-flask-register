@@ -11,7 +11,7 @@ class UserReg(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     UserName = db.Column(db.String(20), nullable=False)
     LastName = db.Column(db.String(30), nullable=False)
-    Date = db.Column(db.DateTime, default=datetime.utcnow)
+    Date = db.Column(db.datetime, default=datetime.utcnow)
 
     def __repr__(self):
         return '<UserReg %r>' % self.id
