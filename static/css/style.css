@@ -15,15 +15,17 @@ html {
 .nav-link b,
 .navbar-brand b {
   color: black;
+  opacity: 0.45;
 }
 
-.nav-link:hover,
-.nav-link:focus,
-.nav-link:active,
+.nav-link b:hover,
+.nav-link b:focus,
+.nav-link b:active,
 .navbar-brand b:hover,
 .navbar-brand b:focus,
 .navbar-brand b:active {
   text-decoration: underline;
+  opacity: 100;
 }
 
 .link {
@@ -49,7 +51,6 @@ html {
 .ya-site-form {
   width: 300px;
   padding: 0px;
-
 
 }
 
