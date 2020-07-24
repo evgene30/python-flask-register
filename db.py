@@ -1,4 +1,3 @@
-import pymysql
 import pymysql.cursors
 
 con = pymysql.connect(host='127.0.0.1',
@@ -8,8 +7,9 @@ con = pymysql.connect(host='127.0.0.1',
                       charset='utf8mb4',
                       cursorclass=pymysql.cursors.DictCursor)
 
-init = int(input('Введите значение: 1 - сделать запись, 2 - просмотр: '))
-if init == 2:
+init = int(input('Введите значение: 2 - сделать запись, 1 - просмотр базы: '))
+
+if init == 1:
     with con:
         cur = con.cursor()
         cur.execute("SELECT * FROM staff")
@@ -19,30 +19,34 @@ if init == 2:
         for row in rows:
             print(row)
     con.close()
-elif init == 1:
+
+elif init == 2:
     cur = con.cursor()
-    b = str(input('Введите Фамилию: '))
-    a = str(input('Введите Имя: '))
-    c = str(input('Введите Отчество: '))
-    d = str(input('Введите размер зарплаты: '))
+    b = str(input('Введите Фамилию: ')).strip()
+    a = str(input('Введите Имя: ')).strip()
+    c = str(input('Введите Отчество: ')).strip()
+    d = str(input('Введите размер зарплаты: ')).strip()
 
     # Ввод значений полей в базу данных
     cur.execute(
         """INSERT INTO staff (Name, Family, FatherFamily, sum) 
-         VALUES ('%(Name)s', '%(Family)s', '%(FatherFamily)s','%(sum)s')
-         """ % {"Name": a, "Family": b, "FatherFamily": c, "sum": d}
+        VALUES ('%(Name)s', '%(Family)s', '%(FatherFamily)s','%(sum)s')
+        """ % {"Name": a, "Family": b, "FatherFamily": c, "sum": d}
     )
-    # Если мы не просто читаем, но и вносим изменения в базу данных - необходимо сохранить транзакцию
+
+    # Сохранение внесенных изменений
     con.commit()
-    # Вывод информации о изменениях
-    base = "'expenses'".upper()
-    print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
+
     # Просмотр измененных данных
     cur.execute("SELECT * FROM staff")
     rows = cur.fetchall()
-
     for row in rows:
         print(row)
+
+    # Вывод информации о изменениях
+    base = "'expenses'".upper()
+    print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
+    # Закрыть соединение
     con.close()
 
 else:
