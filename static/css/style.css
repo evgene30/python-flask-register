@@ -74,6 +74,13 @@ html {
   opacity: 100;
 }
 
+.succes {
+  display: flex;
+  align-items: center;
+  align-self: center;
+}
+
+
 /*top Button*/
 #topButtom {
   display: none;

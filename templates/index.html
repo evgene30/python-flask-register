@@ -6,20 +6,40 @@
 
 
 {% block body %}
-<form class="container">
-    <h1>Система электронной записи в объединения по интересам</h1>
-    <h4>Заполните таблицу данных:</h4>
-    <br>
-    Фамилия, имя, отчество учащегося:
-    <br>
-    <br>
-
-
-    </form>
-    Сведения об учащемся:
-    <br>
-    <br>
+<h1>Система электронной записи в объединения по интересам</h1>
+<h4>Заполните таблицу данных:</h4>
+<br>
+Данные учащегося:
+<br>
+<br>
+<form method="post" action="/" name="form_register">
     <div class="form-row">
+        <div class="form-group col-md-2">
+            <label>Фамилия</label>
+            <input type="text" class="form-control" name="inputFamily" value="" required>
+            </div>
+        <div class="form-group col-md-2">
+            <label>Имя</label>
+            <input type="text" class="form-control" name="inputName" value="" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Отчество</label>
+            <input type="text" class="form-control" name="inputLastName" value="" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Моб.телефон</label>
+            <input type="tel" class="form-control" name="inputPhone" placeholder="+375291234567" value="" required>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success" style="margin-bottom: 10px;">Отправить</button>
+</form>
+
+
+
+Сведения об учащемся:
+<br>
+<br>
+<div class="form-row">
         <div class="form-group col-md-2">
             <label for="date">Дата рождения</label>
             <input type="date" class="form-control" id="inputDateBirthsday">
@@ -37,11 +57,11 @@
             </select>
         </div>
         <div class="form-group col-md-2">
-            <label for="text">№ школы</label>
+            <label for="text">№ школы / учреждения</label>
             <input type="text" class="form-control" id="inputNumberShool" placeholder="12">
         </div>
         <div class="form-group col-md-1">
-            <label for="inputClass">Клас(курс)</label>
+            <label for="inputClass">Класс / курс</label>
             <input type="text" class="form-control" id="inputClass" placeholder="5А">
         </div>
     </div>
