@@ -18,7 +18,29 @@ if init == 1:
 
         for row in rows:
             print(row)
-    con.close()
+    con.close(CREATE TABLE `user_kontakt` (
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`inputFamily` CHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`inputName` CHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`inputLastName` CHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`inputPhone` INT(9) UNSIGNED ZEROFILL NOT NULL,
+	`inputDateBirthsday` DATE NULL DEFAULT NULL,
+	`inputShool` CHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`inputNumberShool` INT(10) UNSIGNED NOT NULL,
+	`inputClass` CHAR(8) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`inputCity` CHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8_general_ci',
+	`inputRaion` CHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`inputTupeStreet` CHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`imputNameStreet` CHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
+	`inputHome` INT(10) NULL DEFAULT NULL,
+	`inputCorpus` INT(10) NOT NULL,
+	`inputRoom` INT(10) NOT NULL,
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=8
+;)
 
 elif init == 2:
     cur = con.cursor()
@@ -33,6 +55,7 @@ elif init == 2:
         VALUES ('%(Name)s', '%(Family)s', '%(FatherFamily)s','%(sum)s')
         """ % {"Name": a, "Family": b, "FatherFamily": c, "sum": d}
     )
+
 
     # Сохранение внесенных изменений
     con.commit()

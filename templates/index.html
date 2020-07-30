@@ -31,22 +31,15 @@
             <input type="tel" class="form-control" name="inputPhone" placeholder="+375291234567" value="" required>
         </div>
     </div>
-    <button type="submit" class="btn btn-success" style="margin-bottom: 10px;">Отправить</button>
-</form>
-
-
-
-Сведения об учащемся:
-<br>
-<br>
-<div class="form-row">
+    <br>
+    <div class="form-row">
         <div class="form-group col-md-2">
-            <label for="date">Дата рождения</label>
-            <input type="date" class="form-control" id="inputDateBirthsday">
+            <label>Дата рождения</label>
+            <input type="date" class="form-control" name="inputDateBirthsday">
         </div>
         <div class="form-group col-md-3">
-            <label for="inputShool">Тип учреждения образования</label>
-            <select id="inputShool" class="form-control">
+            <label>Тип учреждения образования</label>
+            <select name="inputShool" class="form-control">
                 <option selected>Выбрать...</option>
                 <option>Ясли-сад</option>
                 <option>Школа</option>
@@ -57,121 +50,122 @@
             </select>
         </div>
         <div class="form-group col-md-2">
-            <label for="text">№ школы / учреждения</label>
-            <input type="text" class="form-control" id="inputNumberShool" placeholder="12">
+            <label>№ школы / учреждения</label>
+            <input type="text" class="form-control" name="inputNumberShool" placeholder="12">
         </div>
         <div class="form-group col-md-1">
-            <label for="inputClass">Класс / курс</label>
-            <input type="text" class="form-control" id="inputClass" placeholder="5А">
+            <label>Класс / курс</label>
+            <input type="text" class="form-control" name="inputClass" placeholder="5А">
         </div>
     </div>
-
-    Адрес, место жительства:
+    <br>
+Адрес, место жительства учащегося:
     <br>
     <br>
     <div class="form-row">
         <div class="form-group col-md-2">
-            <label for="inputCity">Город</label>
-            <input type="text" class="form-control" id="inputCity" placeholder="Минск">
+            <label>Город</label>
+            <input type="text" class="form-control" name="inputCity" placeholder="Минск">
         </div>
         <div class="form-group col-md-2">
-            <label for="inputState">Район</label>
-            <select id="inputState" class="form-control">
+            <label>Район</label>
+            <select name="inputRaion" class="form-control">
                 <option selected>Выбрать... если Минск</option>
                 <option>Фрунзенский</option>
                 <option>Центральный</option>
+                <option>Советский</option>
+                <option>Первомайский</option>
+                <option>Партизанский</option>
+                <option>Октябрьский</option>
+                <option>Московский</option>
+                <option>Ленинский</option>
+                <option>Заводской</option>
             </select>
         </div>
-        <div class="form-group col-md-1">
-            <label for="inputTupeStreet">Тип улицы</label>
-            <select id="inputTupeStreet" class="form-control">
+        <div class="form-group col-md-2">
+            <label>Тип улицы</label>
+            <select name="inputTupeStreet" class="form-control">
                 <option selected>Выбрать...</option>
-                <option>ул.</option>
-                <option>пр.</option>
-                <option>пер.</option>
+                <option>улица</option>
+                <option>проспект</option>
+                <option>переулок</option>
                 <option>площадь</option>
                 <option>проезд</option>
                 <option>тупик</option>
             </select>
         </div>
+    </div>
+    <div class="form-row">
         <div class="form-group col-md-2">
-            <label for="text">Название улицы</label>
-            <input type="text" class="form-control" id="imputStreet" placeholder="Победителей">
+            <label>Название улицы</label>
+            <input type="text" class="form-control" name="imputNameStreet" placeholder="Победителей">
         </div>
         <div class="form-group col-md-1">
-            <label for="inputCity">Номер дома</label>
-            <input type="text" class="form-control" id="inputCity" placeholder="77">
+            <label>Номер дома</label>
+            <input type="text" class="form-control" name="inputHome" placeholder="77">
         </div>
         <div class="form-group col-md-1">
-            <label for="inputCity">Корпус</label>
-            <input type="text" class="form-control" id="inputCity">
+            <label>Корпус</label>
+            <input type="text" class="form-control" name="inputCorpus">
         </div>
         <div class="form-group col-md-1">
-            <label for="inputCity">Квартира</label>
-            <input type="text" class="form-control" id="inputCity" placeholder="7">
+            <label>Квартира</label>
+            <input type="text" class="form-control" name="inputRoom" placeholder="7">
         </div>
     </div>
-    Сведения о родителях:
+    <br>
+    <button type="submit" class="btn btn-success" style="margin-bottom: 10px;">Отправить</button>
+</form>
+Сведения о родителях:
     <br>
     <br>
-    <form>
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                <label for="inputEmail4">Фамилия</label>
-                <input type="text" class="form-control" id="inputEmail4" placeholder="Отца">
-            </div>
-            <div class="form-group col-md-2">
-                <label for="inputPassword4">Имя</label>
-                <input type="text" class="form-control" id="inputPassword4">
-            </div>
-            <div class="form-group col-md-2">
-                <label for="inputPassword4">Отчество</label>
-                <input type="text" class="form-control" id="inputPassword4">
-            </div>
-            <div class="form-group col-md-2">
-                <label for="inputPassword4">Номер телефона</label>
-                <input type="text" class="form-control" id="inputPassword4" placeholder="+375291234567">
-            </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label>Фамилия</label>
+            <input type="text" class="form-control" name="inputFatherFamyli" placeholder="Отца">
         </div>
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-2">
-                    <label for="inputEmail4">Фамилия</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Матери">
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="inputPassword4">Имя</label>
-                    <input type="text" class="form-control" id="inputPassword4">
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="inputPassword4">Отчество</label>
-                    <input type="text" class="form-control" id="inputPassword4">
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="inputPassword4">Номер телефона</label>
-                    <input type="text" class="form-control" id="inputPassword4" placeholder="+375291234567">
-                </div>
-            </div>
-            <br>
-            <form>
-                <div class="form-group">
-                    <label for="exampleFormControlFile1">Загрузить фото свидетельства о рождении либо последней страницы
-                        паспорта учащегося:</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-            </form>
-            <br>
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Условия регистрации принимаю (<a href="/about">Условия регистрации</a>)*
-                    </label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-success" style="margin-bottom: 10px;">Отправить</button>
-        </form>
+        <div class="form-group col-md-2">
+            <label>Имя</label>
+            <input type="text" class="form-control" name="inputFatherName">
         </div>
+        <div class="form-group col-md-2">
+            <label>Отчество</label>
+            <input type="text" class="form-control" name="inputFatherLastName">
+        </div>
+        <div class="form-group col-md-2">
+            <label>Номер телефона</label>
+            <input type="text" class="form-control" name="inputFatherPhone" placeholder="+375291234567">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label>Фамилия</label>
+            <input type="text" class="form-control" id="inputMatherFamyli" placeholder="Матери">
+        </div>
+        <div class="form-group col-md-2">
+            <label>Имя</label>
+            <input type="text" class="form-control" name="inputMatherName">
+        </div>
+        <div class="form-group col-md-2">
+            <label>Отчество</label>
+            <input type="text" class="form-control" name="inputMatherLastName">
+        </div>
+        <div class="form-group col-md-2">
+            <label>Номер телефона</label>
+            <input type="text" class="form-control" name="inputMatherPhone" placeholder="+375291234567">
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="gridCheck">
+            <label class="form-check-label">
+                    Условия регистрации принимаю (<a href="/about">Условия регистрации</a>)*
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success" style="margin-bottom: 10px;">Отправить</button>
+</form>
 
 
-        {% endblock %}
+{% endblock %}

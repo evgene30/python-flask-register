@@ -24,8 +24,9 @@ html {
 .navbar-brand b:hover,
 .navbar-brand b:focus,
 .navbar-brand b:active {
-  text-decoration: underline;
   opacity: 100;
+  border-bottom: 2px solid #000;
+
 }
 
 .link {
@@ -37,6 +38,7 @@ html {
 
 .ref {
   margin: 0px;
+
 }
 
 .dr2 {
@@ -46,6 +48,7 @@ html {
   margin-left: 2px;
   text-decoration: none;
   opacity: 0.35;
+
 }
 
 .ya-site-form {
@@ -60,24 +63,28 @@ html {
   text-decoration: none;
   opacity: 0.35;
   margin-right: 5px;
+
 }
 
 .dr:hover,
 .dr:focus,
 .dr:active {
   opacity: 100;
+
 }
 
 .dr2:hover,
 .dr2:focus,
 .dr2:active {
   opacity: 100;
+
 }
 
 .succes {
   display: flex;
   align-items: center;
   align-self: center;
+
 }
 
 

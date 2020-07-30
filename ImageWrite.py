@@ -1,6 +1,7 @@
 from PIL import Image
 
 
+
 def scale_image(input_image_path,
                 output_image_path,
                 width=None,
