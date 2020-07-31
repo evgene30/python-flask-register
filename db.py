@@ -7,71 +7,31 @@ con = pymysql.connect(host='127.0.0.1',
                       charset='utf8mb4',
                       cursorclass=pymysql.cursors.DictCursor)
 
-init = int(input('Введите значение: 2 - сделать запись, 1 - просмотр базы: '))
-
-if init == 1:
-    with con:
-        cur = con.cursor()
-        cur.execute("SELECT * FROM staff")
-
-        rows = cur.fetchall()
-
-        for row in rows:
-            print(row)
-    con.close(CREATE TABLE `user_kontakt` (
-	`id` INT(10) NOT NULL AUTO_INCREMENT,
-	`inputFamily` CHAR(50) NOT NULL COLLATE 'utf8_general_ci',
-	`inputName` CHAR(50) NOT NULL COLLATE 'utf8_general_ci',
-	`inputLastName` CHAR(50) NOT NULL COLLATE 'utf8_general_ci',
-	`inputPhone` INT(9) UNSIGNED ZEROFILL NOT NULL,
-	`inputDateBirthsday` DATE NULL DEFAULT NULL,
-	`inputShool` CHAR(50) NOT NULL COLLATE 'utf8_general_ci',
-	`inputNumberShool` INT(10) UNSIGNED NOT NULL,
-	`inputClass` CHAR(8) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`inputCity` CHAR(50) NOT NULL DEFAULT '' COLLATE 'utf8_general_ci',
-	`inputRaion` CHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`inputTupeStreet` CHAR(50) NOT NULL COLLATE 'utf8_general_ci',
-	`imputNameStreet` CHAR(50) NULL DEFAULT NULL COLLATE 'utf8_general_ci',
-	`inputHome` INT(10) NULL DEFAULT NULL,
-	`inputCorpus` INT(10) NOT NULL,
-	`inputRoom` INT(10) NOT NULL,
-	PRIMARY KEY (`id`) USING BTREE
-)
-COLLATE='utf8_general_ci'
-ENGINE=InnoDB
-AUTO_INCREMENT=8
-;)
-
-elif init == 2:
-    cur = con.cursor()
-    b = str(input('Введите Фамилию: ')).strip()
-    a = str(input('Введите Имя: ')).strip()
-    c = str(input('Введите Отчество: ')).strip()
-    d = str(input('Введите размер зарплаты: ')).strip()
+cur = con.cursor()
+b = str(input('Введите число: ')).strip()
+a = str(input('Введите главный номер: ')).strip()
+c = str(input('Введите годовую зарплату: ')).strip()
+d = str(input('Введите размер зарплаты: ')).strip()
+e = str(input('Введите размер имя: ')).strip()
 
     # Ввод значений полей в базу данных
-    cur.execute(
-        """INSERT INTO staff (Name, Family, FatherFamily, sum) 
-        VALUES ('%(Name)s', '%(Family)s', '%(FatherFamily)s','%(sum)s')
-        """ % {"Name": a, "Family": b, "FatherFamily": c, "sum": d}
+cur.execute(
+        """INSERT INTO receivers3 (num, receiver, value, comment, name) 
+        VALUES ('%(num)s', '%(receiver)s', '%(value)s', '%(comment)s', '%(name)s')
+        """ % {"num": a, "receiver": b, "value": c, "comment": d, "name": e}
     )
 
-
     # Сохранение внесенных изменений
-    con.commit()
+con.commit()
 
     # Просмотр измененных данных
-    cur.execute("SELECT * FROM staff")
-    rows = cur.fetchall()
-    for row in rows:
-        print(row)
+cur.execute("SELECT * FROM receivers3")
+rows = cur.fetchall()
+for row in rows:
+    print(row)
 
     # Вывод информации о изменениях
-    base = "'expenses'".upper()
-    print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
+base = "'receivers3'".upper()
+print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
     # Закрыть соединение
-    con.close()
-
-else:
-    print('Соединение завершено')
-    con.close()
+con.close()
