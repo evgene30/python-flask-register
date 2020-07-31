@@ -35,8 +35,6 @@ def index():
         u = request.form['inputHome'].strip()
         r = request.form['inputCorpus'].strip()
         mr = request.form['inputRoom'].strip()
-
-
         # Ввод значений полей в базу данных
         cur.execute(
             """INSERT INTO user_kontakt (inputFamily, inputName, inputLastName, inputPhone, inputDateBirthsday, inputShool, inputNumberShool, inputClass, inputCity, inputRaion, inputTupeStreet, imputNameStreet, inputHome, inputCorpus, inputRoom) 
