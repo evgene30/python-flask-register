@@ -31,17 +31,29 @@ def index():
         j = request.form['inputCity'].strip()
         k = request.form['inputRaion'].strip()
         l = request.form['inputTupeStreet'].strip()
-        m = request.form['imputNameStreet'].strip()
+        m = request.form['inputNameStreet'].strip()
         u = request.form['inputHome'].strip()
         r = request.form['inputCorpus'].strip()
         mr = request.form['inputRoom'].strip()
+        fr = request.form['inputFatherFamyli'].strip()
+        gr = request.form['inputFatherName'].strip()
+        hr = request.form['inputFatherLastName'].strip()
+        nr = request.form['inputFatherPhone'].strip()
+        br = request.form['inputMatherFamyli'].strip()
+        ar = request.form['inputMatherName'].strip()
+        tr = request.form['inputMatherLastName'].strip()
+        ur = request.form['inputMatherPhone'].strip()
+        #qr = request.form['SendPhoto']
+
         # Ввод значений полей в базу данных
         cur.execute(
-            """INSERT INTO user_kontakt (inputFamily, inputName, inputLastName, inputPhone, inputDateBirthsday, inputShool, inputNumberShool, inputClass, inputCity, inputRaion, inputTupeStreet, imputNameStreet, inputHome, inputCorpus, inputRoom) 
-            VALUES ('%(inputFamily)s', '%(inputName)s', '%(inputLastName)s', '%(inputPhone)s', '%(inputDateBirthsday)s', '%(inputShool)s','%(inputNumberShool)s', '%(inputClass)s', '%(inputCity)s', '%(inputRaion)s', '%(inputTupeStreet)s','%(imputNameStreet)s','%(inputHome)s','%(inputCorpus)s', '%(inputRoom)s')"""
-                % {"inputFamily": a, "inputName": b, "inputLastName": c, "inputPhone": d, "inputDateBirthsday": e,
-                   "inputShool": f, "inputNumberShool": g, "inputClass": h, "inputCity": j, "inputRaion": k,
-                   "inputTupeStreet": l, "imputNameStreet": m, "inputHome": u, "inputCorpus": r, "inputRoom": mr}
+            """INSERT INTO user_kontakt (inputFamily, inputName, inputLastName, inputPhone, inputDateBirthsday, inputShool, inputNumberShool, inputClass, inputCity, inputRaion, inputTupeStreet, inputNameStreet, inputHome, inputCorpus, inputRoom, inputFatherFamyli, inputFatherName, inputFatherLastName, inputFatherPhone, inputMatherFamyli, inputMatherName, inputMatherLastName, inputMatherPhone) 
+                    VALUES ('%(inputFamily)s', '%(inputName)s', '%(inputLastName)s', '%(inputPhone)s', '%(inputDateBirthsday)s', '%(inputShool)s','%(inputNumberShool)s', '%(inputClass)s', '%(inputCity)s', '%(inputRaion)s', '%(inputTupeStreet)s','%(inputNameStreet)s','%(inputHome)s','%(inputCorpus)s', '%(inputRoom)s','%(inputFatherFamyli)s','%(inputFatherName)s','%(inputFatherLastName)s','%(inputFatherPhone)s','%(inputMatherFamyli)s','%(inputMatherName)s','%(inputMatherLastName)s','%(inputMatherPhone)s')"""
+            % {"inputFamily": a, "inputName": b, "inputLastName": c, "inputPhone": d, "inputDateBirthsday": e,
+               "inputShool": f, "inputNumberShool": g, "inputClass": h, "inputCity": j, "inputRaion": k,
+               "inputTupeStreet": l, "inputNameStreet": m, "inputHome": u, "inputCorpus": r, "inputRoom": mr,
+               "inputFatherFamyli": fr, "inputFatherName": gr, "inputFatherLastName": hr, "inputFatherPhone": nr,
+               "inputMatherFamyli": br, "inputMatherName": ar, "inputMatherLastName": tr, "inputMatherPhone": ur}
         )
         # Сохранение внесенных изменений
         con.commit()
@@ -56,7 +68,7 @@ def index():
         base = "'user_kontakt'".upper()
         print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
         # Закрыть соединение
-        con.close()
+        #con.close()
         # Выести страницу успешного запроса
         return render_template('Success!.html')
     else:
