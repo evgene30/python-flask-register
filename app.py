@@ -9,7 +9,7 @@ con = pymysql.connect(host='127.0.0.1',
                       user='root',
                       password='12345678',
                       db='kontakt',
-                      charset='utf8mb4',
+                      charset='utf8',
                       cursorclass=pymysql.cursors.DictCursor)
 
 
@@ -46,17 +46,17 @@ def index():
         # Сохранение внесенных изменений
         con.commit()
 
-        # Просмотр измененных данных
-        cur.execute("SELECT * FROM user_kontakt")
-        rows = cur.fetchall()
-        for row in rows:
-            print(row)
+        # Просмотр измененных данных, вывод последней введенной строки
+        cur.execute("SELECT * FROM user_kontakt ORDER BY id DESC LIMIT 1")
+        rows = cur.fetchone()
+        # for row in rows:
+        print(rows)
 
         # Вывод информации о изменениях
         base = "'user_kontakt'".upper()
         print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
         # Закрыть соединение
-        # con.close()
+        con.close()
         # Выести страницу успешного запроса
         return render_template('Success!.html')
     else:
