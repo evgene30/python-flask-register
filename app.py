@@ -1,15 +1,19 @@
 from flask import Flask, render_template, request
 import pymysql.cursors
+from ImageWrite import scale_image
+from mail import send_mail
+from datetime import datetime
 
 # Создаем экземпляр Flask App
 app = Flask(__name__)
 
+
 # Соединяемся с базой данных
-con = pymysql.connect(host='127.0.0.1',
+con = pymysql.connect(host='localhost',
                       user='root',
                       password='12345678',
                       db='kontakt',
-                      charset='utf8',
+                      charset='utf8mb4',
                       cursorclass=pymysql.cursors.DictCursor)
 
 
@@ -43,12 +47,27 @@ def index():
         ar = request.form['inputMatherName'].strip()
         tr = request.form['inputMatherLastName'].strip()
         ur = request.form['inputMatherPhone'].strip()
-        #qr = request.form['SendPhoto']
+        qr = request.files['SendPhoto']
+
+
+
+        user_name = str(b + '_' + a + '_' + c)
+        # загрузка изображений на сервер через приложение ImageWrite
+        scale_image(qr, user_name)
+
+        # отправка письма с данными на электронную почту
+        data_send = str('РЕГИСТРАЦИЯ НОВОГО ПОЛЬЗОВАТЕЛЯ В БАЗЕ ДАННЫХ ВАШЕГО ОТДЕЛА:''\n''\n''\n'
+        + b + ' ' + a + ' ' + c + ', телефон: ' + d + ', дата рождения: ' + e + '\n'
+        'Личная информация:  ' + f + ' № ' + g + ', класс/группа ' + h + ' ' + ', Адрес: ' + j + ' ' + k + ' ' + l + ' ' + m + ' ' + u + ', ' + r + ' Квартира ' + mr + '\n''\n'
+        'Иформация о родителях:' + '\n''\n'
+        'Ф.И.О. Отца, телефон:  ' + fr + ' ' + gr + ' ' + hr + ', ' + nr + '\n'
+        'Ф.И.О. Матери, телефон:  ' + br + ' ' + ar + ' ' + tr + ', ' + ur + '\n''\n' + 'Дата регистрации: ' + datetime.now().strftime("%d-%B-%Y %X")).encode('utf-8')
+
+        send_mail(data_send)
 
         # Ввод значений полей в базу данных
         cur.execute(
-            """INSERT INTO user_kontakt (inputFamily, inputName, inputLastName, inputPhone, inputDateBirthsday, inputShool, inputNumberShool, inputClass, inputCity, inputRaion, inputTupeStreet, inputNameStreet, inputHome, inputCorpus, inputRoom, inputFatherFamyli, inputFatherName, inputFatherLastName, inputFatherPhone, inputMatherFamyli, inputMatherName, inputMatherLastName, inputMatherPhone) 
-                    VALUES ('%(inputFamily)s', '%(inputName)s', '%(inputLastName)s', '%(inputPhone)s', '%(inputDateBirthsday)s', '%(inputShool)s','%(inputNumberShool)s', '%(inputClass)s', '%(inputCity)s', '%(inputRaion)s', '%(inputTupeStreet)s','%(inputNameStreet)s','%(inputHome)s','%(inputCorpus)s', '%(inputRoom)s','%(inputFatherFamyli)s','%(inputFatherName)s','%(inputFatherLastName)s','%(inputFatherPhone)s','%(inputMatherFamyli)s','%(inputMatherName)s','%(inputMatherLastName)s','%(inputMatherPhone)s')"""
+            """INSERT INTO user_kontakt (inputFamily, inputName, inputLastName, inputPhone, inputDateBirthsday, inputShool, inputNumberShool, inputClass, inputCity, inputRaion, inputTupeStreet, inputNameStreet, inputHome, inputCorpus, inputRoom, inputFatherFamyli, inputFatherName, inputFatherLastName, inputFatherPhone, inputMatherFamyli, inputMatherName, inputMatherLastName, inputMatherPhone) VALUES ('%(inputFamily)s', '%(inputName)s', '%(inputLastName)s', '%(inputPhone)s', '%(inputDateBirthsday)s', '%(inputShool)s','%(inputNumberShool)s', '%(inputClass)s', '%(inputCity)s', '%(inputRaion)s', '%(inputTupeStreet)s','%(inputNameStreet)s','%(inputHome)s','%(inputCorpus)s', '%(inputRoom)s', '%(inputFatherFamyli)s','%(inputFatherName)s','%(inputFatherLastName)s','%(inputFatherPhone)s', '%(inputMatherFamyli)s','%(inputMatherName)s','%(inputMatherLastName)s','%(inputMatherPhone)s') """
             % {"inputFamily": a, "inputName": b, "inputLastName": c, "inputPhone": d, "inputDateBirthsday": e,
                "inputShool": f, "inputNumberShool": g, "inputClass": h, "inputCity": j, "inputRaion": k,
                "inputTupeStreet": l, "inputNameStreet": m, "inputHome": u, "inputCorpus": r, "inputRoom": mr,
@@ -62,13 +81,13 @@ def index():
         cur.execute("SELECT * FROM user_kontakt ORDER BY id DESC LIMIT 1")
         rows = cur.fetchone()
         # for row in rows:
-        print(rows)
+        print('\n', rows)
 
         # Вывод информации о изменениях
         base = "'user_kontakt'".upper()
         print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
         # Закрыть соединение
-        #con.close()
+        # con.close()
         # Выести страницу успешного запроса
         return render_template('Success!.html')
     else:

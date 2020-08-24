@@ -12,7 +12,7 @@
 Данные учащегося:
 <br>
 <br>
-<form method="post" action="/" name="form_register">
+<form method="post" action="/" name="form_register" enctype="multipart/form-data">
     <div class="form-row">
         <div class="form-group col-md-2">
             <label>Фамилия</label>
@@ -40,21 +40,20 @@
         <div class="form-group col-md-3">
             <label>Тип учреждения образования</label>
             <select name="inputShool" class="form-control">
-                <option selected>Выбрать...</option>
+                <option selected="selected">Школа</option>
                 <option>Ясли-сад</option>
-                <option>Школа</option>
                 <option>Гимназия</option>
                 <option>Колледж</option>
                 <option>ВУЗ</option>
                 <option>Домашнее обучение</option>
             </select>
         </div>
-        <div class="form-group col-md-2">
-            <label>№ школы / учреждения</label>
+        <div class="form-group col-md-3">
+            <label>№ школы / название учреждения</label>
             <input type="text" class="form-control" name="inputNumberShool" placeholder="12">
         </div>
-        <div class="form-group col-md-1">
-            <label>Класс / курс</label>
+        <div class="form-group col-md-2">
+            <label>Класс / курс / группа</label>
             <input type="text" class="form-control" name="inputClass" placeholder="5А">
         </div>
     </div>
@@ -68,9 +67,9 @@
             <input type="text" class="form-control" name="inputCity" placeholder="Минск">
         </div>
         <div class="form-group col-md-2">
-            <label>Район</label>
+            <label>Район (если Минск)</label>
             <select name="inputRaion" class="form-control">
-                <option selected>Выбрать... если Минск</option>
+                <option selected="selected"></option>
                 <option>Фрунзенский</option>
                 <option>Центральный</option>
                 <option>Советский</option>
@@ -85,7 +84,7 @@
         <div class="form-group col-md-2">
             <label>Тип улицы</label>
             <select name="inputTupeStreet" class="form-control">
-                <option selected>Выбрать...</option>
+                <option selected="selected">Выбрать...</option>
                 <option>улица</option>
                 <option>проспект</option>
                 <option>переулок</option>

@@ -1,16 +1,16 @@
 from PIL import Image
+from datetime import datetime
 
 
+def scale_image(input_image, name):
+    output_image_path = 'static/image/upload_image_users/' + name + '_' + str(
+        datetime.now().strftime("%d_%B_%Y")) + '.jpg'
+    width = 900
+    height = None
 
-def scale_image(input_image_path,
-                output_image_path,
-                width=None,
-                height=None
-                ):
-    original_image = Image.open(input_image_path)
+    original_image = Image.open(input_image)
     w, h = original_image.size
-    print('The original image size is {wide}px wide x {height}px '
-          'high'.format(wide=w, height=h))
+    print('\n', 'Размеры изображения на входе: {wide}px ширина x {height}px ' 'высота'.format(wide=w, height=h))
 
     if width and height:
         max_size = (width, height)
@@ -19,17 +19,15 @@ def scale_image(input_image_path,
     elif height:
         max_size = (w, height)
     else:
-        raise RuntimeError('Width or height required!')
+        raise RuntimeError('Ошибка. Превышение временного интервала обработки.')
 
     original_image.thumbnail(max_size, Image.ANTIALIAS)
     original_image.save(output_image_path)
 
     scaled_image = Image.open(output_image_path)
     width, height = scaled_image.size
-    print('The scaled image size is {wide}px wide x {height}px '
-          'high'.format(wide=width, height=height))
+    print('Обработанное изображение: {wide}px ширина x {height}px ''высота'.format(wide=width, height=height))
 
-
-scale_image(input_image_path='1.JPG',
-            output_image_path='C:/Users/Flame/Desktop/Programming/Register/static/pillar_scaled.jpg',
-            width=900)
+#scale_image(input_image='D:\Мои рисунки\IMG_0465.JPG', name='pic')
+#            output_image_path='static/image/pillar_scaled.jpg',
+#            width=900)
