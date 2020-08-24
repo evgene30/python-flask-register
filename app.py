@@ -20,7 +20,7 @@ con = pymysql.connect(host='localhost',
 @app.route('/', methods=["POST", "GET"])
 @app.route('/home', methods=["POST", "GET"])
 def index():
-    # Проверяем использование метода отправки данных
+
     if request.method == "POST":
         cur = con.cursor()
 
@@ -62,7 +62,6 @@ def index():
         'Иформация о родителях:' + '\n''\n'
         'Ф.И.О. Отца, телефон:  ' + fr + ' ' + gr + ' ' + hr + ', ' + nr + '\n'
         'Ф.И.О. Матери, телефон:  ' + br + ' ' + ar + ' ' + tr + ', ' + ur + '\n''\n' + 'Дата регистрации: ' + datetime.now().strftime("%d-%B-%Y %X")).encode('utf-8')
-
         send_mail(data_send)
 
         # Ввод значений полей в базу данных
@@ -92,6 +91,8 @@ def index():
         return render_template('Success!.html')
     else:
         return render_template('index.html')
+
+
 
     q = request.args.get('q')
     if q:
