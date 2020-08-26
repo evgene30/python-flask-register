@@ -34,6 +34,7 @@ def send_mail(body,filename):
 
     # Encode file in ASCII characters to send by email
     encoders.encode_base64(part)
+
     foto_name = 'IMG.jpg' # название картинки
     # Add header as key/value pair to attachment part
     part.add_header("Content-Disposition", f"attachment; filename= {foto_name}")
@@ -48,3 +49,5 @@ def send_mail(body,filename):
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, text)
 
+#send_mail(body = "This is an email with attachment sent from Python",
+    #filename = 'D:/Мои рисунки/IMG_0465.jpg')
