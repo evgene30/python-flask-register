@@ -7,7 +7,6 @@ from datetime import datetime
 # Создаем экземпляр Flask App
 app = Flask(__name__)
 
-
 # Соединяемся с базой данных
 con = pymysql.connect(host='localhost',
                       user='root',
@@ -20,7 +19,7 @@ con = pymysql.connect(host='localhost',
 @app.route('/', methods=["POST", "GET"])
 @app.route('/home', methods=["POST", "GET"])
 def index():
-
+    q = request.args.get('q')
     if request.method == "POST":
         cur = con.cursor()
 
@@ -49,20 +48,16 @@ def index():
         ur = request.form['inputMatherPhone'].strip()
         qr = request.files['SendPhoto']
 
-
-
-        user_name = str(b + '_' + a + '_' + c)
         # загрузка изображений на сервер через приложение ImageWrite
+        user_name = str(b + '_' + a + '_' + c)
         scale_image(qr, user_name)
 
         # отправка письма с данными на электронную почту
-        data_send = str('РЕГИСТРАЦИЯ НОВОГО ПОЛЬЗОВАТЕЛЯ В БАЗЕ ДАННЫХ ВАШЕГО ОТДЕЛА:''\n''\n''\n'
-        + b + ' ' + a + ' ' + c + ', телефон: ' + d + ', дата рождения: ' + e + '\n'
-        'Личная информация:  ' + f + ' № ' + g + ', класс/группа ' + h + ' ' + ', Адрес: ' + j + ' ' + k + ' ' + l + ' ' + m + ' ' + u + ', ' + r + ' Квартира ' + mr + '\n''\n'
-        'Иформация о родителях:' + '\n''\n'
-        'Ф.И.О. Отца, телефон:  ' + fr + ' ' + gr + ' ' + hr + ', ' + nr + '\n'
-        'Ф.И.О. Матери, телефон:  ' + br + ' ' + ar + ' ' + tr + ', ' + ur + '\n''\n' + 'Дата регистрации: ' + datetime.now().strftime("%d-%B-%Y %X")).encode('utf-8')
-        send_mail(data_send)
+        body = str(
+            'РЕГИСТРАЦИЯ НОВОГО ПОЛЬЗОВАТЕЛЯ В БАЗЕ ДАННЫХ ВАШЕГО ОТДЕЛА:''\n''\n''\n' + b + ' ' + a + ' ' + c + ', телефон: ' + d + ', дата рождения: ' + e + '\n''Личная информация:  ' + f + ' № ' + g + ', класс/группа ' + h + ' ' + ', Адрес: ' + j + ' ' + k + ' ' + l + ' ' + m + ' ' + u + ', ' + r + ' Квартира ' + mr + '\n''\n''Иформация о родителях:' + '\n''\n''Ф.И.О. Отца, телефон:  ' + fr + ' ' + gr + ' ' + hr + ', ' + nr + '\n''Ф.И.О. Матери, телефон:  ' + br + ' ' + ar + ' ' + tr + ', ' + ur + '\n''\n' + 'Дата регистрации: ' + datetime.now().strftime(
+                "%d-%B-%Y %X")).encode('utf-8mb4')
+
+        send_mail(body,qr)
 
         # Ввод значений полей в базу данных
         cur.execute(
@@ -92,9 +87,6 @@ def index():
     else:
         return render_template('index.html')
 
-
-
-    q = request.args.get('q')
     if q:
         return render_template('search.html')
     else:

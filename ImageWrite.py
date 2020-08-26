@@ -28,6 +28,8 @@ def scale_image(input_image, name):
     width, height = scaled_image.size
     print('Обработанное изображение: {wide}px ширина x {height}px ''высота'.format(wide=width, height=height))
 
+    return (output_image_path)
+
 #scale_image(input_image='D:\Мои рисунки\IMG_0465.JPG', name='pic')
 #            output_image_path='static/image/pillar_scaled.jpg',
 #            width=900)
