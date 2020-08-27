@@ -24,8 +24,7 @@
                style="padding-bottom: 0px;padding-top: 0px;">
                 <img src="static/image/png/logo_1.png" width="50" height="38" class="d-inline-block align-top" alt=""
                      loading="lazy" style="padding-bottom: 1px;padding-top: 1px;">
-                <color
-                ="white"><b>ГУО ЦДОДиМ "Контакт"</b>
+                <b>ГУО ЦДОДиМ "Контакт"</b>
             </a>
             <!-- Меню -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
@@ -90,7 +89,7 @@
             </form>
         </div>
 
-</div>
+    </div>
 </nav>
 </div>
 
@@ -184,6 +183,14 @@
 <!-- Script block -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="static/js/script.js"></script>
+<script src="static/js/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        $("#tel").mask("999999999");
+        $("#tel2").mask("999999999");
+        $("#tel3").mask("999999999");
+    });
+</script>
 </body>
 
 </html>
