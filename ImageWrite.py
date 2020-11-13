@@ -1,5 +1,6 @@
-from PIL import Image
 from datetime import datetime
+
+from PIL import Image
 
 
 def scale_image(input_image, name):
@@ -30,6 +31,5 @@ def scale_image(input_image, name):
 
     return (output_image_path)
 
-#scale_image(input_image='D:\Мои рисунки\IMG_0465.JPG', name='pic')
-#            output_image_path='static/image/pillar_scaled.jpg',
-#            width=900)
+# scale_image(input_image='/Users/flame/Downloads/evgeniabrilevskaa_1604768008_1.jpg', name='pic')
+# output_image_path='static/image/pillar_scaled.jpg', width=900)

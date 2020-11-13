@@ -1,19 +1,18 @@
-import smtplib, ssl
+import smtplib
+import ssl
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 
-def send_mail(body,filename):
+def send_mail(body, filename):
     subject = "Регистрация нового учащегося в электронной базе данных."  # тема письма
-    #body = "This is an email with attachment sent from Python" # сообщение
-    #filename = 'D:/Мои рисунки/IMG_0465.jpg' # файл
+    # body = "This is an email with attachment sent from Python" # сообщение
+    # filename = 'D:/Мои рисунки/IMG_0465.jpg' # файл
     sender_email = "sv_3@bk.ru"  # адрес отправителя
     receiver_email = "sv_3@bk.ru"  # адрес получателя
     password = '1487'
-
-
 
     # Создание заголовка(компиляция) письма при помощи MIMEMultipart
     message = MIMEMultipart()
@@ -35,7 +34,7 @@ def send_mail(body,filename):
     # Encode file in ASCII characters to send by email
     encoders.encode_base64(part)
 
-    foto_name = 'IMG.jpg' # название картинки
+    foto_name = 'IMG.jpg'  # название картинки
     # Add header as key/value pair to attachment part
     part.add_header("Content-Disposition", f"attachment; filename= {foto_name}")
 
@@ -44,10 +43,10 @@ def send_mail(body,filename):
     text = message.as_string()
 
     # Log in to server using secure context and send email
-    context = ssl.create_default_context()
+    context = ssl.create_default_context().verify = False
     with smtplib.SMTP_SSL("smtp.mail.ru", 465, context=context) as server:
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, text)
 
-#send_mail(body = "This is an email with attachment sent from Python",
-    #filename = 'D:/Мои рисунки/IMG_0465.jpg')
+# send_mail(body = "This is an email with attachment sent from Python",
+# filename = 'D:/Мои рисунки/IMG_0465.jpg')
