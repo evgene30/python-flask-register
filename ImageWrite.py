@@ -11,7 +11,7 @@ def scale_image(input_image, name):
 
     original_image = Image.open(input_image)
     w, h = original_image.size
-    print('\n', 'Размеры изображения на входе: {wide}px ширина x {height}px ' 'высота'.format(wide=w, height=h))
+    # print('\n', 'Размеры изображения на входе: {wide}px ширина x {height}px ' 'высота'.format(wide=w, height=h))
 
     if width and height:
         max_size = (width, height)
@@ -29,7 +29,7 @@ def scale_image(input_image, name):
     width, height = scaled_image.size
     print('Обработанное изображение: {wide}px ширина x {height}px ''высота'.format(wide=width, height=height))
 
-    return (output_image_path)
+    return output_image_path
 
 # scale_image(input_image='/Users/flame/Downloads/evgeniabrilevskaa_1604768008_1.jpg', name='pic')
 # output_image_path='static/image/pillar_scaled.jpg', width=900)

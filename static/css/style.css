@@ -20,7 +20,9 @@ html {
     color: black;
     opacity: 0.45;
     transition-duration: .3s;
+   
 }
+
 
 .nav-link b:hover,
 .nav-link b:focus,
