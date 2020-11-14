@@ -1,11 +1,9 @@
-import ssl
 from datetime import datetime
 
 import mysql.connector
 from flask import Flask, render_template, request
-
-from ImageWrite import scale_image
 from mail import send_mail
+from ImageWrite import scale_image
 
 # Создаем экземпляр Flask App
 app = Flask(__name__)
@@ -20,12 +18,11 @@ config = {'user': 'root',
 
 cnx = mysql.connector.connect(**config)
 cursor = cnx.cursor(dictionary=True)
-ssl._create_default_https_context = ssl._create_unverified_context
 
 
 @app.route('/', methods=["POST", "GET"])
 @app.route('/home', methods=["POST", "GET"])
-def index(cnx=None):
+def index():
     q = request.args.get('q')
     if request.method == "POST":
 
@@ -55,7 +52,7 @@ def index(cnx=None):
         qr = request.files['SendPhoto']
 
         # загрузка изображений на сервер через приложение ImageWrite
-        user_name = str(b + '_' + a + '_' + c)
+        user_name = str (b + '_' + a + '_' + c)
         fix = scale_image(qr, user_name)
 
         # отправка письма с данными на электронную почту
@@ -75,19 +72,20 @@ def index(cnx=None):
                "inputMatherFamyli": br, "inputMatherName": ar, "inputMatherLastName": tr, "inputMatherPhone": ur}
         )
         # Сохранение внесенных изменений
-        cursor.commit()
+        cnx.commit()
 
         # Просмотр измененных данных, вывод последней введенной строки
-        cursor.execute("SELECT * FROM user_kontakt ORDER BY id DESC LIMIT 1")
-        rows = cursor.fetchone()
-        # for row in rows:
-        print('\n', rows)
+        #cursor.execute("SELECT * FROM user_kontakt ORDER BY id")
+        #results = cursor.fetchone()
+        #print(row)
 
         # Вывод информации о изменениях
         base = "user_kontakt".upper()
         print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
+
         # Закрыть соединение
-        # con.close()
+        cnx.close()
+
         # Выести страницу успешного запроса
         return render_template('Success!.html')
     else:

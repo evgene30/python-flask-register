@@ -17,6 +17,7 @@ def parser(URL):
         print(strong)
         with open('/Users/flame/Downloads/dataset_3363_3.txt', 'w') as file:
             file.write(str(strong))
+        file.close()
     return strong
 
 
