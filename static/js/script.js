@@ -1,6 +1,6 @@
 $(function () {
     $(window).scroll(function () {
-        if ($(this).scrollTop() != 0) {
+        if ($(this).scrollTop() !== 0) {
             $('#topButtom').fadeIn();
         } else {
             $('#topButtom').fadeOut();

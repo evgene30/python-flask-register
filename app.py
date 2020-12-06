@@ -2,7 +2,7 @@ from datetime import datetime
 
 import mysql.connector
 from flask import Flask, render_template, request
-from mail import send_mail
+
 from ImageWrite import scale_image
 
 # Создаем экземпляр Flask App
@@ -23,7 +23,6 @@ cursor = cnx.cursor(dictionary=True)
 @app.route('/', methods=["POST", "GET"])
 @app.route('/home', methods=["POST", "GET"])
 def index():
-    q = request.args.get('q')
     if request.method == "POST":
 
         b = request.form['inputFamily'].strip()
@@ -60,7 +59,7 @@ def index():
             'РЕГИСТРАЦИЯ НОВОГО ПОЛЬЗОВАТЕЛЯ В БАЗЕ ДАННЫХ ВАШЕГО ОТДЕЛА:''\n''\n''\n' + b + ' ' + a + ' ' + c + ', телефон: ' + d + ', дата рождения: ' + e + '\n''Личная информация:  ' + f + ' № ' + g + ', класс/группа ' + h + ' ' + ', Адрес: ' + j + ' ' + k + ' ' + l + ' ' + m + ' ' + u + ', ' + r + ' Квартира ' + mr + '\n''\n''Иформация о родителях:' + '\n''\n''Ф.И.О. Отца, телефон:  ' + fr + ' ' + gr + ' ' + hr + ', ' + nr + '\n''Ф.И.О. Матери, телефон:  ' + br + ' ' + ar + ' ' + tr + ', ' + ur + '\n''\n' + 'Дата регистрации: ' + datetime.now().strftime(
                 "%d-%B-%Y %X"))
 
-        #send_mail(body, fix)
+        # send_mail(body, fix)
 
         # Ввод значений полей в базу данных
         cursor.execute(
@@ -75,9 +74,9 @@ def index():
         cnx.commit()
 
         # Просмотр измененных данных, вывод последней введенной строки
-        #cursor.execute("SELECT * FROM user_kontakt ORDER BY id")
-        #results = cursor.fetchone()
-        #print(row)
+        # cursor.execute("SELECT * FROM user_kontakt ORDER BY id")
+        # results = cursor.fetchone()
+        # print(row)
 
         # Вывод информации о изменениях
         base = "user_kontakt".upper()
@@ -91,6 +90,7 @@ def index():
     else:
         return render_template('index.html')
 
+    q = request.args.get('q')
     if q:
         return render_template('search.html')
     else:
