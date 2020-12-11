@@ -4,8 +4,7 @@ from PIL import Image
 
 
 def scale_image(input_image, name):
-    output_image_path = 'static/image/upload_image_users/' + name + '_' + str(
-        datetime.now().strftime("%d_%B_%Y")) + '.jpg'
+    output_image_path = '/home/Evgene/register/static/image/upload_image_users/' + name + '_' + str(datetime.now().strftime("%d_%B_%Y")) + '.jpg'
     width = 900
     height = None
 
