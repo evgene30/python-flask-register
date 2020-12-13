@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+
+{% block body %}
+<h1>Система электронной записи в объединения по интересам</h1>
+<br>
+<h4>Заполните таблицу данных:</h4>
+<br>
+<form method="post" action="/" name="form_register" enctype="multipart/form-data">
+    <div class="form-row">
+
+        <div class="form-group col-md-4">
+            <label>Название объединения</label>
+            <input type="text" class="form-control" name="inputSection" placeholder="Введите название объединения" value="" required>
+        </div>
+        <div class="form-group col-md-4">
+            <label>Выберите отдел (сверьтесь с расписанием занятий)</label>
+            <select type="text" name="inputDivision" placeholder="Выберите отдел..." class="form-control" required>
+                <option></option>
+                <option>Отдел интеллектуально-технического творчества</option>
+                <option>Отдел декоративно-прикладного творчества и ИЗО</option>
+                <option>Отдел спорта и туризма</option>
+                <option>Отдел культурно-досуговой деятельности</option>
+                <option>Отдел социально-педагогической работы</option>
+                <option>Отдел общественно-гуманитарной деятельности</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    Данные учащегося:
+    <br>
+    <br>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label>Фамилия</label>
+            <input type="text" class="form-control" name="inputFamily" value="" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Имя</label>
+            <input type="text" class="form-control" name="inputName" value="" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Отчество</label>
+            <input type="text" class="form-control" name="inputLastName" value="" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Моб.телефон</label>
+            <input type="tel" class="form-control" name="inputPhone" placeholder="291234567" value="" required id="tel">
+        </div>
+    </div>
+
+    <br>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label>Дата рождения</label>
+            <input type="date" class="form-control" name="inputDateBirthsday" required>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Тип учреждения образования</label>
+            <select name="inputShool" class="form-control">
+                <option selected="selected">Школа</option>
+                <option>Ясли-сад</option>
+                <option>Гимназия</option>
+                <option>Колледж</option>
+                <option>ВУЗ</option>
+                <option>Домашнее обучение</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label>№ школы / название учреждения</label>
+            <input type="text" class="form-control" name="inputNumberShool" placeholder="12">
+        </div>
+        <div class="form-group col-md-2">
+            <label>Класс / курс / группа</label>
+            <input type="text" class="form-control" name="inputClass" placeholder="5А">
+        </div>
+    </div>
+    <br>
+    Адрес, место жительства учащегося:
+    <br>
+    <br>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label>Город / нас.пункт</label>
+            <input type="text" class="form-control" name="inputCity" placeholder="Минск" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Район (если Минск)</label>
+            <select name="inputRaion" class="form-control">
+                <option selected="selected"></option>
+                <option>Фрунзенский</option>
+                <option>Центральный</option>
+                <option>Советский</option>
+                <option>Первомайский</option>
+                <option>Партизанский</option>
+                <option>Октябрьский</option>
+                <option>Московский</option>
+                <option>Ленинский</option>
+                <option>Заводской</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Тип улицы</label>
+            <select name="inputTupeStreet" class="form-control" required>
+                <option selected="selected">улица</option>
+                <option>проспект</option>
+                <option>переулок</option>
+                <option>площадь</option>
+                <option>проезд</option>
+                <option>тупик</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label>Название улицы</label>
+            <input type="text" class="form-control" name="inputNameStreet" placeholder="Центральная" required>
+        </div>
+        <div class="form-group col-md-1">
+            <label>Номер дома</label>
+            <input type="text" class="form-control" name="inputHome" placeholder="77" required>
+        </div>
+        <div class="form-group col-md-1">
+            <label>Корпус</label>
+            <input type="text" class="form-control" name="inputCorpus">
+        </div>
+        <div class="form-group col-md-1">
+            <label>Квартира</label>
+            <input type="text" class="form-control" name="inputRoom" placeholder="7" required>
+        </div>
+    </div>
+    <br>
+    Сведения о родителях (законных представителях):
+    <br>
+    <br>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label>Фамилия</label>
+            <input type="text" class="form-control" name="inputFatherFamyli" placeholder="Отца" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Имя</label>
+            <input type="text" class="form-control" name="inputFatherName" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Отчество</label>
+            <input type="text" class="form-control" name="inputFatherLastName" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Номер телефона</label>
+            <input type="tel2" class="form-control" name="inputFatherPhone" placeholder="291234567" id="tel2" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <label>Фамилия</label>
+            <input type="text" class="form-control" name="inputMatherFamyli" placeholder="Матери" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Имя</label>
+            <input type="text" class="form-control" name="inputMatherName" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Отчество</label>
+            <input type="text" class="form-control" name="inputMatherLastName" required>
+        </div>
+        <div class="form-group col-md-2">
+            <label>Моб.телефон</label>
+            <input type="tel3" class="form-control" name="inputMatherPhone" placeholder="291234567" id="tel3" required>
+        </div>
+    </div>
+    <br>
+    Подтверждающие документы:
+    <br>
+    <br>
+    <div class="form-group">
+        <div class="image">
+            <label class="form-check-label">Загрузите фотографию последней страницы паспорта ребенка либо фото
+                свидетельства о рождении:</label>
+            <br>
+            <br>
+            <input type="file" name="SendPhoto" multiple accept="image/*" required>
+        </div>
+        <br>
+        <br>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="cheched" required>
+            <label class="form-check-label">Условия регистрации принимаю (<a href="" data-toggle="modal"
+                                                                             data-target="#exampleModal">Условия
+                регистрации</a>)*</label>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Условия регистрации в электронной системе записи
+                            учащихся</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Для регистрации в «Электронной системе записи учащихся»,
+                            я принимаю решение о предоставлении персональных данных моего ребенка и даю согласие на их
+                            обработку свободно, своей волей и в своем интересе – Государственному учреждению образования
+                            «Центр дополнительного образования детей и молодежи «Контакт» г. Минска», УНП 100195544,
+                            220004, г. Минск, ул. М. Танка, 8.</p>
+                        Целью предоставления персональных данных является электронная запись ребенка в объединения по
+                        интересам, основанного на присоединении к условиям публичной оферты.
+                        <p>Перечень персональных данных, на обработку которых дается согласие субъекта персональных
+                            данных: фамилия, имя, отчество ребенка; дата рождения; мобильный телефон; домашний адрес;
+                            учреждение образования где занимается ребенок, сведения о родителях (законных
+                            представителях): фамилия, имя, отчество, мобильный телефон.</p>
+                        Перечень действий с персональными данными, на совершение которых дается согласие: обработка
+                        вышеуказанных персональных данных будет осуществляться путем смешанной обработки персональных
+                        данных (сбор, систематизация, накопление, хранение, уточнение (обновление)).
+                        Общее описание вышеуказанных способов обработки данных приведено согласно действующего
+                        законодательства Республики Беларусь.
+                        <p>Срок, в течение которого действует согласие субъекта персональных данных: персональные данные
+                            субъекта подлежат хранению в течение сроков, установленных законодательством Республики
+                            Беларусь.</p>
+                        Персональные данные уничтожаются: по достижению целей обработки персональных данных; при
+                        ликвидации или реорганизации ГУО ЦДОДиМ «Контакт»; на основании письменного обращения субъекта
+                        персональных данных с требованием о прекращении обработки его персональных данных (Центр
+                        прекратит обработку таких персональных данных в течение 3 (трех) рабочих дней, о чем будет
+                        направлено письменное уведомление субъекту персональных данных в течение 10 (десяти) рабочих
+                        дней).
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Выход</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    <button type="submit" class="btn btn-success" style="margin-bottom: 10px;">Отправить форму</button>
+</form>
+
+
+{% endblock %}
