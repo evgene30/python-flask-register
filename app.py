@@ -1,6 +1,6 @@
 from datetime import datetime
 from mail import send_mail
-import mysql.connector
+import pymysql
 from flask import Flask, render_template, request
 from ImageWrite import scale_image
 
@@ -13,16 +13,8 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         # Соединяемся с базой данных
-        config = {
-            'user': 'root',
-            'password': 'root',
-            'host': '127.0.0.1',
-            'port': 8889,
-            'database': 'kontakt',
-            'raise_on_warnings': True
-        }
-        cnx = mysql.connector.connect(**config)
-        cursor = cnx.cursor(dictionary=True)
+        cnx = pymysql.connect('localhost', 'root', '12345678', 'kontakt')
+        cursor = cnx.cursor()
 
         Section = request.form['inputSection'].strip()
         Division = request.form['inputDivision'].strip()

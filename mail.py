@@ -46,9 +46,9 @@ def send_mail(body, filename, name, Division):
     send_mail_name = MainMail(Division)
 
     subject = "Регистрация нового учащегося в электронной базе данных."  # тема письма
-    sender_email = "sv_3@bk.ru"  # адрес отправителя
+    sender_email = "minsk.kontakt@gmail.com"  # адрес отправителя
     receiver_email = send_mail_name  # адрес получателя
-    password = "1487"
+    password = "585858kontakt"
 
     # Создание заголовка(компиляция) письма при помощи MIMEMultipart
     message = MIMEMultipart()
@@ -81,7 +81,7 @@ def send_mail(body, filename, name, Division):
 
     # Log in to server using secure context and send email
     context = ssl.create_default_context().verify = True
-    with smtplib.SMTP_SSL('smtp.mail.ru', 465, context) as server:
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465, context) as server:
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, text)
 
