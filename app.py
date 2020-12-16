@@ -47,7 +47,6 @@ def index():
         user_name = f"{b}_{a}_{c}"
         fix = scale_image(qr, user_name)
 
-
         # отправка письма с данными на электронную почту
         body = str(
             f'РЕГИСТРАЦИЯ НОВОГО ПОЛЬЗОВАТЕЛЯ В БАЗЕ ДАННЫХ ВАШЕГО ОТДЕЛА:''\n'
@@ -68,13 +67,13 @@ def index():
             f'Ф.И.О. Матери, телефон: {br} {ar} {tr}, +375{ur}''\n'
             '\n'
             f"Дата регистрации (время сервера): {datetime.now().strftime('%d-%B-%Y %X')}"
-            )
+        )
 
         send_mail(body, fix, user_name.lower(), Division)
 
         # Ввод значений полей в базу данных
         cursor.execute(
-           """INSERT INTO user_kontakt (inputFamily, inputName, inputLastName, inputPhone, inputDateBirthsday, inputShool, inputNumberShool, inputClass, inputCity, inputRaion, inputTupeStreet, inputNameStreet, inputHome, inputCorpus, inputRoom, inputFatherFamyli, inputFatherName, inputFatherLastName, inputFatherPhone, inputMatherFamyli, inputMatherName, inputMatherLastName, inputMatherPhone) VALUES ('%(inputFamily)s', '%(inputName)s', '%(inputLastName)s', '%(inputPhone)s', '%(inputDateBirthsday)s', '%(inputShool)s','%(inputNumberShool)s', '%(inputClass)s', '%(inputCity)s', '%(inputRaion)s', '%(inputTupeStreet)s','%(inputNameStreet)s','%(inputHome)s','%(inputCorpus)s', '%(inputRoom)s', '%(inputFatherFamyli)s','%(inputFatherName)s','%(inputFatherLastName)s','%(inputFatherPhone)s', '%(inputMatherFamyli)s','%(inputMatherName)s','%(inputMatherLastName)s','%(inputMatherPhone)s') """
+            """INSERT INTO user_kontakt (inputFamily, inputName, inputLastName, inputPhone, inputDateBirthsday, inputShool, inputNumberShool, inputClass, inputCity, inputRaion, inputTupeStreet, inputNameStreet, inputHome, inputCorpus, inputRoom, inputFatherFamyli, inputFatherName, inputFatherLastName, inputFatherPhone, inputMatherFamyli, inputMatherName, inputMatherLastName, inputMatherPhone) VALUES ('%(inputFamily)s', '%(inputName)s', '%(inputLastName)s', '%(inputPhone)s', '%(inputDateBirthsday)s', '%(inputShool)s','%(inputNumberShool)s', '%(inputClass)s', '%(inputCity)s', '%(inputRaion)s', '%(inputTupeStreet)s','%(inputNameStreet)s','%(inputHome)s','%(inputCorpus)s', '%(inputRoom)s', '%(inputFatherFamyli)s','%(inputFatherName)s','%(inputFatherLastName)s','%(inputFatherPhone)s', '%(inputMatherFamyli)s','%(inputMatherName)s','%(inputMatherLastName)s','%(inputMatherPhone)s') """
             % {"inputFamily": a, "inputName": b, "inputLastName": c, "inputPhone": d, "inputDateBirthsday": e,
                "inputShool": f, "inputNumberShool": g, "inputClass": h, "inputCity": j, "inputRaion": k,
                "inputTupeStreet": l, "inputNameStreet": m, "inputHome": u, "inputCorpus": r, "inputRoom": mr,
@@ -83,16 +82,16 @@ def index():
         )
         # Сохранение внесенных изменений
         cnx.commit()
-        #cursor.close()
+        # cursor.close()
 
         # Просмотр измененных данных, вывод последней введенной строки
-        #cursor.execute("SELECT * FROM user_kontakt ORDER BY id")
-        #results = cursor.fetchone()
-        #print(row)
+        # cursor.execute("SELECT * FROM user_kontakt ORDER BY id")
+        # results = cursor.fetchone()
+        # print(row)
 
         # Вывод информации о изменениях
-        #base = "user_kontakt".upper()
-        #print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
+        # base = "user_kontakt".upper()
+        # print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
 
         # Закрыть соединение
         cnx.close()
@@ -101,8 +100,6 @@ def index():
         return render_template('Success!.html')
     else:
         return render_template('index.html')
-
-
 
 
 @app.route('/about', methods=["POST", "GET"])

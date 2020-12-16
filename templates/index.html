@@ -174,17 +174,16 @@
         </div>
     </div>
     <br>
-    Подтверждающие документы:
+    Загрузите фотографию последней страницы паспорта ребенка либо фото свидетельства о рождении:
     <br>
     <br>
     <div class="form-group">
-        <div class="image">
-            <label class="form-check-label">Загрузите фотографию последней страницы паспорта ребенка либо фото
-                свидетельства о рождении:</label>
-            <br>
-            <br>
-            <input type="file" name="SendPhoto" multiple accept="image/*" required>
-        </div>
+
+           <div class="custom-file col-md-4">
+                <input type="file" class="custom-file-input" id="customFile" name="SendPhoto" multiple accept="image/*" required>
+                <label class="custom-file-label" for="customFile" data-browse="Загрузить">Выберите файл:</label>
+           </div>
+
         <br>
         <br>
         <div class="form-check">
@@ -242,6 +241,7 @@
     </div>
     <button type="submit" class="btn btn-success" style="margin-bottom: 10px;">Отправить форму</button>
 </form>
+
 
 
 {% endblock %}
