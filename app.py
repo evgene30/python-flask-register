@@ -112,6 +112,16 @@ def about():
         return render_template('about.html')
 
 
+@app.route('/support', methods=["POST", "GET"])
+def support():
+    q = request.args.get('q')
+    if q:
+        return render_template('search.html')
+
+    else:
+        return render_template('support.html')
+
+
 @app.route('/search', methods=["POST", "GET"])
 def search():
     return render_template('search.html')
