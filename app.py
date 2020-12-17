@@ -83,17 +83,6 @@ def index():
         # Сохранение внесенных изменений
         cnx.commit()
         # cursor.close()
-
-        # Просмотр измененных данных, вывод последней введенной строки
-        # cursor.execute("SELECT * FROM user_kontakt ORDER BY id")
-        # results = cursor.fetchone()
-        # print(row)
-
-        # Вывод информации о изменениях
-        # base = "user_kontakt".upper()
-        # print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
-
-        # Закрыть соединение
         cnx.close()
 
         # Выести страницу успешного запроса
@@ -123,25 +112,28 @@ def support():
         user_name = sup_name
         qr = sup_foto
         body = str(f'ОБРАЩЕНИЕ В ТЕХПОДДЕРЖКУ:''\n'
-                '\n'
-                f"{sup_name}, {sup_email}"'\n'
-                '\n'
-                '\n'
-                f"{sup_text}"'\n'
-                '\n'
-                f"Время обращения (время сервера): {datetime.now().strftime('%d-%B-%Y %X')}"
+                   '\n'
+                   f"{sup_name}, {sup_email}"'\n'
+                   '\n'
+                   '\n'
+                   f"{sup_text}"'\n'
+                   '\n'
+                   f"Время обращения (время сервера): {datetime.now().strftime('%d-%B-%Y %X')}"
                    )
-        fix = scale_image(qr, user_name)
+        print(sup_foto)
+        fix = sup_foto
+
+        if image is fix:
+            fix = scale_image(sup_foto, sup_name)
+        else:
+            fix = 'static/image/png/index.png'
+
+
         send_mail(body, fix, user_name, Division='Техподдержка')
-
-
 
         return render_template('Success!.html')
     else:
         return render_template('support.html')
-
-
-
 
 
 @app.route('/search', methods=["POST", "GET"])
