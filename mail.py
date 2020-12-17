@@ -33,7 +33,8 @@ def send_mail(body, filename, name, Division):
                 'Отдел интеллектуально-технического творчества': 'sv_3@bk.ru',
                 'Отдел культурно-досуговой деятельности': 'orgtvor4@mail.ru',
                 'Отдел социально-педагогической работы': 'psihologi_kontakt@mail.ru',
-                'Отдел общественно-гуманитарной деятельности': 'dimoo.kontakt@mail.ru'
+                'Отдел общественно-гуманитарной деятельности': 'dimoo.kontakt@mail.ru',
+                'Техподдержка': 'minsk.kontakt@gmail.com',
                 }
         if i in mail:
             output_email = mail.get(i)

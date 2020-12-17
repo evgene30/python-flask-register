@@ -114,12 +114,34 @@ def about():
 
 @app.route('/support', methods=["POST", "GET"])
 def support():
-    q = request.args.get('q')
-    if q:
-        return render_template('search.html')
+    if request.method == "POST":
+        sup_name = request.form['inputName'].strip()
+        sup_email = request.form['Send_support_mail'].strip()
+        sup_text = request.form['Send_support_text'].strip()
+        sup_foto = request.files['SendPhoto']
 
+        user_name = sup_name
+        qr = sup_foto
+        body = str(f'ОБРАЩЕНИЕ В ТЕХПОДДЕРЖКУ:''\n'
+                '\n'
+                f"{sup_name}, {sup_email}"'\n'
+                '\n'
+                '\n'
+                f"{sup_text}"'\n'
+                '\n'
+                f"Время обращения (время сервера): {datetime.now().strftime('%d-%B-%Y %X')}"
+                   )
+        fix = scale_image(qr, user_name)
+        send_mail(body, fix, user_name, Division='Техподдержка')
+
+
+
+        return render_template('Success!.html')
     else:
         return render_template('support.html')
+
+
+
 
 
 @app.route('/search', methods=["POST", "GET"])
