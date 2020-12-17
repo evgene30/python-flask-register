@@ -1,8 +1,10 @@
 from datetime import datetime
-from mail import send_mail
-import pymysql
+
+import mysql.connector
 from flask import Flask, render_template, request
+
 from ImageWrite import scale_image
+from mail import send_mail
 
 # Создаем экземпляр Flask App
 app = Flask(__name__)
@@ -13,7 +15,16 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         # Соединяемся с базой данных
-        cnx = pymysql.connect('localhost', 'root', '12345678', 'kontakt')
+        config = {
+            'user': 'root',
+            'password': 'root',
+            'host': '127.0.0.1',
+            'port': 8889,
+            'database': 'kontakt',
+            'raise_on_warnings': True
+        }
+
+        cnx = mysql.connector.connect(**config)
         cursor = cnx.cursor()
 
         Section = request.form['inputSection'].strip()
@@ -103,31 +114,26 @@ def about():
 
 @app.route('/support', methods=["POST", "GET"])
 def support():
+    global fix
     if request.method == "POST":
         sup_name = request.form['inputName'].strip()
         sup_email = request.form['Send_support_mail'].strip()
         sup_text = request.form['Send_support_text'].strip()
-        sup_foto = request.files['SendPhoto']
 
-        user_name = sup_name
-        qr = sup_foto
+        user_name = str(sup_name).lower()
+
         body = str(f'ОБРАЩЕНИЕ В ТЕХПОДДЕРЖКУ:''\n'
                    '\n'
-                   f"{sup_name}, {sup_email}"'\n'
+                   f"Имя: {sup_name}, {sup_email}"'\n'
                    '\n'
+                   f"Текст сообщения:"
                    '\n'
                    f"{sup_text}"'\n'
                    '\n'
                    f"Время обращения (время сервера): {datetime.now().strftime('%d-%B-%Y %X')}"
                    )
-        print(sup_foto)
-        fix = sup_foto
 
-        if image is fix:
-            fix = scale_image(sup_foto, sup_name)
-        else:
-            fix = 'static/image/png/index.png'
-
+        fix = 'static/image/png/index.png'
 
         send_mail(body, fix, user_name, Division='Техподдержка')
 
