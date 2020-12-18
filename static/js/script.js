@@ -22,3 +22,6 @@ $(document).ready(function () {
 });
 
 
+$(document).ready(function () {
+  bsCustomFileInput.init()
+})

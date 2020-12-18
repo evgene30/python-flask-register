@@ -1,8 +1,10 @@
 from datetime import datetime
-from mail import send_mail
+
 import pymysql
 from flask import Flask, render_template, request
+
 from ImageWrite import scale_image
+from mail import send_mail
 
 # Создаем экземпляр Flask App
 app = Flask(__name__)
@@ -13,7 +15,7 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         # Соединяемся с базой данных
-        cnx = pymysql.connect ('Evgene.mysql.pythonanywhere-services.com','Evgene','Evgen2067749','Evgene$kontakt')
+        cnx = pymysql.connect('Evgene.mysql.pythonanywhere-services.com', 'Evgene', 'Evgen2067749', 'Evgene$kontakt')
         cursor = cnx.cursor()
 
         Section = request.form['inputSection'].strip()
@@ -47,7 +49,6 @@ def index():
         user_name = f"{b}_{a}_{c}"
         fix = scale_image(qr, user_name)
 
-
         # отправка письма с данными на электронную почту
         body = str(
             f'РЕГИСТРАЦИЯ НОВОГО ПОЛЬЗОВАТЕЛЯ В БАЗЕ ДАННЫХ ВАШЕГО ОТДЕЛА:''\n'
@@ -68,13 +69,13 @@ def index():
             f'Ф.И.О. Матери, телефон: {br} {ar} {tr}, +375{ur}''\n'
             '\n'
             f"Дата регистрации (время сервера): {datetime.now().strftime('%d-%B-%Y %X')}"
-            )
+        )
 
         send_mail(body, fix, user_name.lower(), Division)
 
         # Ввод значений полей в базу данных
         cursor.execute(
-           """INSERT INTO user_kontakt (inputFamily, inputName, inputLastName, inputPhone, inputDateBirthsday, inputShool, inputNumberShool, inputClass, inputCity, inputRaion, inputTupeStreet, inputNameStreet, inputHome, inputCorpus, inputRoom, inputFatherFamyli, inputFatherName, inputFatherLastName, inputFatherPhone, inputMatherFamyli, inputMatherName, inputMatherLastName, inputMatherPhone) VALUES ('%(inputFamily)s', '%(inputName)s', '%(inputLastName)s', '%(inputPhone)s', '%(inputDateBirthsday)s', '%(inputShool)s','%(inputNumberShool)s', '%(inputClass)s', '%(inputCity)s', '%(inputRaion)s', '%(inputTupeStreet)s','%(inputNameStreet)s','%(inputHome)s','%(inputCorpus)s', '%(inputRoom)s', '%(inputFatherFamyli)s','%(inputFatherName)s','%(inputFatherLastName)s','%(inputFatherPhone)s', '%(inputMatherFamyli)s','%(inputMatherName)s','%(inputMatherLastName)s','%(inputMatherPhone)s') """
+            """INSERT INTO user_kontakt (inputFamily, inputName, inputLastName, inputPhone, inputDateBirthsday, inputShool, inputNumberShool, inputClass, inputCity, inputRaion, inputTupeStreet, inputNameStreet, inputHome, inputCorpus, inputRoom, inputFatherFamyli, inputFatherName, inputFatherLastName, inputFatherPhone, inputMatherFamyli, inputMatherName, inputMatherLastName, inputMatherPhone) VALUES ('%(inputFamily)s', '%(inputName)s', '%(inputLastName)s', '%(inputPhone)s', '%(inputDateBirthsday)s', '%(inputShool)s','%(inputNumberShool)s', '%(inputClass)s', '%(inputCity)s', '%(inputRaion)s', '%(inputTupeStreet)s','%(inputNameStreet)s','%(inputHome)s','%(inputCorpus)s', '%(inputRoom)s', '%(inputFatherFamyli)s','%(inputFatherName)s','%(inputFatherLastName)s','%(inputFatherPhone)s', '%(inputMatherFamyli)s','%(inputMatherName)s','%(inputMatherLastName)s','%(inputMatherPhone)s') """
             % {"inputFamily": a, "inputName": b, "inputLastName": c, "inputPhone": d, "inputDateBirthsday": e,
                "inputShool": f, "inputNumberShool": g, "inputClass": h, "inputCity": j, "inputRaion": k,
                "inputTupeStreet": l, "inputNameStreet": m, "inputHome": u, "inputCorpus": r, "inputRoom": mr,
@@ -83,26 +84,13 @@ def index():
         )
         # Сохранение внесенных изменений
         cnx.commit()
-        #cursor.close()
-
-        # Просмотр измененных данных, вывод последней введенной строки
-        #cursor.execute("SELECT * FROM user_kontakt ORDER BY id")
-        #results = cursor.fetchone()
-        #print(row)
-
-        # Вывод информации о изменениях
-        #base = "user_kontakt".upper()
-        #print('\n''Изменения в базу ' + base + ' внесены!' + '\n')
-
-        # Закрыть соединение
+        # cursor.close()
         cnx.close()
 
         # Выести страницу успешного запроса
         return render_template('Success!.html')
     else:
         return render_template('index.html')
-
-
 
 
 @app.route('/about', methods=["POST", "GET"])
@@ -115,10 +103,40 @@ def about():
         return render_template('about.html')
 
 
+@app.route('/support', methods=["POST", "GET"])
+def support():
+
+    if request.method == "POST":
+        sup_name = request.form['inputName'].strip()
+        sup_email = request.form['Send_support_mail'].strip()
+        sup_text = request.form['Send_support_text'].strip()
+
+        user_name = str(sup_name).lower()
+
+        body = str(f'ОБРАЩЕНИЕ В ТЕХПОДДЕРЖКУ:''\n'
+                   '\n'
+                   f"Имя: {sup_name}, {sup_email}"'\n'
+                   '\n'
+                   f"Текст сообщения:"
+                   '\n'
+                   f"{sup_text}"'\n'
+                   '\n'
+                   f"Время обращения (время сервера): {datetime.now().strftime('%d-%B-%Y %X')}"
+                   )
+
+        fix = '/home/Evgene/register/static/image/png/index.png'
+
+        send_mail(body, fix, user_name, Division='Техподдержка')
+
+        return render_template('Success!.html')
+    else:
+        return render_template('support.html')
+
+
 @app.route('/search', methods=["POST", "GET"])
 def search():
     return render_template('search.html')
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
