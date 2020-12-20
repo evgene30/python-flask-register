@@ -1,9 +1,8 @@
 from datetime import datetime
 
 import mysql.connector
-from flask import Flask, render_template, request
-
 from ImageWrite import scale_image
+from flask import Flask, render_template, request
 from mail import send_mail
 
 # Создаем экземпляр Flask App
@@ -18,14 +17,15 @@ def index():
         config = {
             'user': 'root',
             'password': 'root',
-            'host': '127.0.0.1',
+            'host': 'localhost',
             'port': 8889,
             'database': 'kontakt',
             'raise_on_warnings': True
         }
 
         cnx = mysql.connector.connect(**config)
-        cursor = cnx.cursor()
+
+        cursor = cnx.cursor(dictionary=True)
 
         Section = request.form['inputSection'].strip()
         Division = request.form['inputDivision'].strip()
@@ -114,7 +114,6 @@ def about():
 
 @app.route('/support', methods=["POST", "GET"])
 def support():
-    global fix
     if request.method == "POST":
         sup_name = request.form['inputName'].strip()
         sup_email = request.form['Send_support_mail'].strip()
