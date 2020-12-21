@@ -1,8 +1,8 @@
 from datetime import datetime
-from mail import send_mail
 import pymysql
-from flask import Flask, render_template, request
 from ImageWrite import scale_image
+from flask import Flask, render_template, request
+from mail import send_mail
 
 # Создаем экземпляр Flask App
 app = Flask(__name__)
@@ -107,27 +107,21 @@ def support():
         sup_name = request.form['inputName'].strip()
         sup_email = request.form['Send_support_mail'].strip()
         sup_text = request.form['Send_support_text'].strip()
-        sup_foto = request.files['SendPhoto']
 
-        user_name = sup_name
-        qr = sup_foto
+        user_name = str(sup_name).lower()
+
         body = str(f'ОБРАЩЕНИЕ В ТЕХПОДДЕРЖКУ:''\n'
                    '\n'
-                   f"{sup_name}, {sup_email}"'\n'
+                   f"Имя: {sup_name}, {sup_email}"'\n'
                    '\n'
+                   f"Текст сообщения:"
                    '\n'
                    f"{sup_text}"'\n'
                    '\n'
                    f"Время обращения (время сервера): {datetime.now().strftime('%d-%B-%Y %X')}"
                    )
-        print(sup_foto)
-        fix = sup_foto
 
-        if image is fix:
-            fix = scale_image(sup_foto, sup_name)
-        else:
-            fix = 'static/image/png/index.png'
-
+        fix = 'static/image/png/index.png'
 
         send_mail(body, fix, user_name, Division='Техподдержка')
 
@@ -142,4 +136,4 @@ def search():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
