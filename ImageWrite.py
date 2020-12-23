@@ -1,16 +1,16 @@
 from datetime import datetime
-
 from PIL import Image
 
 
 def scale_image(input_image, name):
+
     output_image_path = '/home/Evgene/register/static/image/upload_image_users/' + name + '_' + str(datetime.now().strftime("%d_%B_%Y")) + '.jpg'
+
     width = 900
     height = None
 
     original_image = Image.open(input_image)
     w, h = original_image.size
-    # print('\n', 'Размеры изображения на входе: {wide}px ширина x {height}px ' 'высота'.format(wide=w, height=h))
 
     if width and height:
         max_size = (width, height)
@@ -30,5 +30,3 @@ def scale_image(input_image, name):
 
     return output_image_path
 
-# scale_image(input_image='/Users/flame/Downloads/evgeniabrilevskaa_1604768008_1.jpg', name='pic')
-# output_image_path='static/image/pillar_scaled.jpg', width=900)
