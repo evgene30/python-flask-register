@@ -7,7 +7,6 @@ from mail import send_mail
 # Создаем экземпляр Flask App
 app = Flask(__name__)
 
-
 @app.route('/', methods=["POST", "GET"])
 @app.route('/home', methods=["POST", "GET"])
 def index():
