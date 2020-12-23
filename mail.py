@@ -33,7 +33,8 @@ def send_mail(body, filename, name, Division):
                 'Отдел интеллектуально-технического творчества': 'sv_3@bk.ru',
                 'Отдел культурно-досуговой деятельности': 'orgtvor4@mail.ru',
                 'Отдел социально-педагогической работы': 'psihologi_kontakt@mail.ru',
-                'Отдел общественно-гуманитарной деятельности': 'dimoo.kontakt@mail.ru'
+                'Отдел общественно-гуманитарной деятельности': 'dimoo.kontakt@mail.ru',
+                'Техподдержка': 'minsk.kontakt@gmail.com',
                 }
         if i in mail:
             output_email = mail.get(i)
@@ -71,7 +72,6 @@ def send_mail(body, filename, name, Division):
     encoders.encode_base64(part)
 
     foto_name = f"{foto_name_one}.jpeg"  # название картинки (латиница)
-    print(foto_name_one)
 
     # Add header as key/value pair to attachment part
     part.add_header("Content-Disposition", f"attachment; filename= {foto_name}")
@@ -85,3 +85,12 @@ def send_mail(body, filename, name, Division):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465, context) as server:
         server.login(sender_email, password)
         server.sendmail(sender_email, receiver_email, text)
+
+
+'''minsk.kontakt@gmail.com
+585858kontakt
+¬ам нужно разрешить менее безопасные приложени€, вы можете сделать это, перейд€ по ссылке ниже
+https://www.google.com/Ќастройки/Ѕезопасность/lesssecureapps
+а еще попробуйте вот это
+https://accounts.google.com/DisplayUnlockCaptcha
+если все еще не работает попробуйте сменить пароль на gmail'''
