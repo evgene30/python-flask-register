@@ -37,7 +37,11 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 VIRTUAL_ENV="C:\Users\Flame\Desktop\Programming\Register\venv"
+=======
+VIRTUAL_ENV="C:\Users\Flame\Desktop\Programming\register\venv"
+>>>>>>> 5c229b4cce9d968d1bae7122a50eeb428b7d24e7
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

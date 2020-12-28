@@ -1,19 +1,18 @@
 from datetime import datetime
 import pymysql
-from flask import Flask, render_template, request
 from ImageWrite import scale_image
+from flask import Flask, render_template, request
 from mail import send_mail
 
 # Создаем экземпляр Flask App
 app = Flask(__name__)
 
-
 @app.route('/', methods=["POST", "GET"])
 @app.route('/home', methods=["POST", "GET"])
 def index():
     if request.method == "POST":
-        # Соединяемся с базой данных
 
+        # Соединяемся с базой данных
         cnx = pymysql.connect('Evgene.mysql.pythonanywhere-services.com', 'Evgene', 'Evgen2067749', 'Evgene$kontakt')
         cursor = cnx.cursor()
 
@@ -104,8 +103,6 @@ def about():
 
 @app.route('/support', methods=["POST", "GET"])
 def support():
-
-
     if request.method == "POST":
         sup_name = request.form['inputName'].strip()
         sup_email = request.form['Send_support_mail'].strip()
@@ -123,7 +120,6 @@ def support():
                    '\n'
                    f"Время обращения (время сервера): {datetime.now().strftime('%d-%B-%Y %X')}"
                    )
-
 
         fix = '/home/Evgene/register/static/image/png/index.png'
         send_mail(body, fix, user_name, Division='Техподдержка')

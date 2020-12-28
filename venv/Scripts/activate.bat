@@ -8,7 +8,11 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
+<<<<<<< HEAD
 set VIRTUAL_ENV=C:\Users\Flame\Desktop\Programming\Register\venv
+=======
+set VIRTUAL_ENV=C:\Users\Flame\Desktop\Programming\register\venv
+>>>>>>> 5c229b4cce9d968d1bae7122a50eeb428b7d24e7
 
 if not defined PROMPT set PROMPT=$P$G
 
