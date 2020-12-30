@@ -1,37 +1,27 @@
-{% extends 'base.html' %}
-
-{% block title %}
-Техподдержка
-{% endblock %}
-
-
-{% block body %}
+{% extends 'base.html' %} {% block title %} Техподдержка {% endblock %} {% block body %}
 
 <form class="forms col-md-8" style="padding-left: 0px;padding-right: 0px;margin-left:0px;" method="post" action="/support" name="form_support" enctype="multipart/form-data">
-<h1>ТЕХПОДДЕРЖКА</h1>
-<br>
-    <h5>Уважаемые пользователи</h5>
+    <h1>ТЕХПОДДЕРЖКА</h1>
     <br>
-Мы уделяем большое внимание вопросам функционирования и развития нашего приложения, готовы его постоянно совершенствоать.<br>
-Если вы столкнулись с трудностями при регистрации, либо заметили техничесие, синтаксические и иные виды ошибок - пожалуйста сообщите нам.<br>
-Наша техподдержка постарается их исправить в максимально короткие сроки.<br>
-Воспользуйтесь нашей формой обратной связи.<br>
-Данная форма предназначена для сообщений связанных исключительно с техническим функционированием системы электронной регистрации.<br>
-<br>
-<h5>Заполните форму обратной связи:</h5>
-<br>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Введите ваш Email</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" name="Send_support_mail" placeholder="name@example.com" required>
-  </div>
+    <h5>Уважаемые пользователи</h5>
+    <br> Мы уделяем большое внимание вопросам функционирования и развития нашего приложения, готовы его постоянно совершенствоать.<br> Если вы столкнулись с трудностями при регистрации, либо заметили техничесие, синтаксические и иные виды ошибок - пожалуйста
+    сообщите нам.<br> Наша техподдержка постарается их исправить в максимально короткие сроки.<br> Воспользуйтесь нашей формой обратной связи.<br> Данная форма предназначена для сообщений связанных исключительно с техническим функционированием системы
+    электронной регистрации.<br>
+    <br>
+    <h5>Заполните форму обратной связи:</h5>
+    <br>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Введите ваш Email</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" name="Send_support_mail" placeholder="name@example.com" required>
+    </div>
     <div class="form-group">
         <label>Введите ваше Имя</label>
-        <input type="text" class="form-control" name="inputName" value="" required>
+        <input type="text" class="form-control" name="inputName" value="" minlength="3" maxlength="15" maxlength="20" required>
     </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Введите текст сообщения</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="Send_support_text" required></textarea>
-  </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Введите текст сообщения</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="Send_support_text" minlength="10" maxlength="400" required></textarea>
+    </div>
     <br>
     <button type="submit" class="btn btn-success" style="margin-bottom: 10px;">Отправить форму</button>
 </form>
